@@ -2,9 +2,9 @@ apiVersion: v1
 entries:
   voltha-environment:
   - appVersion: "2.4"
-    created: "2020-05-22T08:58:29.262455533-07:00"
+    created: "2020-05-22T09:47:33.704823743-07:00"
     description: Chart for deploying VOLTHA dependencies for an environment
-    digest: 6a8e462c96855ee65f055d6866c7dcf069fc4fdc3478c2f9c8c246cdca982863
+    digest: eb8a3b3c379c34f950cb8342065b1b7d7e9ad47f8a4c096ea41f58fdd2806f66
     icon: https://guide.opencord.org/logos/voltha.svg
     name: voltha-environment
     urls:
@@ -12,12 +12,12 @@ entries:
     version: 0.0.1
   voltha-stack:
   - appVersion: "2.4"
-    created: "2020-05-22T08:58:29.265382242-07:00"
+    created: "2020-05-22T09:47:33.710085734-07:00"
     description: Chart for deploying a VOLTHA stack
-    digest: ef0993d99a9eeecd44af3bd81cb311234e678196d42dab9f698ca41c195caee8
+    digest: 6d008595d93226314084f53b19c85084870e3050677ca85b9305f3e4e88c20d1
     icon: https://guide.opencord.org/logos/voltha.svg
     name: voltha-stack
     urls:
     - voltha-stack-0.0.1.tgz
     version: 0.0.1
-generated: "2020-05-22T08:58:29.254925202-07:00"
+generated: "2020-05-22T09:47:33.698951322-07:00"
