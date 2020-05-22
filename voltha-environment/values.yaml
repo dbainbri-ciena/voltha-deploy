@@ -43,8 +43,7 @@ onos:
   eapol: true
   igmp: false
 
-radius:
-  tmp: true
+radius: {}
 
 bbsim0:
   olt_id: 0
@@ -55,6 +54,7 @@ bbsim0:
   onu: 1
 
 bbsim1:
+  enabled: false
   olt_id: 1
   auth: true
   dhcp: true
@@ -63,6 +63,7 @@ bbsim1:
   onu: 1
 
 bbsim2:
+  enabled: false
   olt_id: 2
   auth: true
   dhcp: true
@@ -71,6 +72,7 @@ bbsim2:
   onu: 1
 
 bbsim3:
+  enabled: false
   olt_id: 3
   auth: true
   dhcp: true
@@ -79,6 +81,7 @@ bbsim3:
   onu: 1
 
 bbsim4:
+  enabled: false
   olt_id: 4
   auth: true
   dhcp: true
