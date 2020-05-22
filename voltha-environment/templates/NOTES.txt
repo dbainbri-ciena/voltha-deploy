@@ -1,1 +1,0 @@
-VOLTHA Environment deployed with release name: {{ .Release.Name }}
