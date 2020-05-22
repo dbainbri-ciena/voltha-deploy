@@ -1,0 +1,6 @@
+---
+name: voltha-stack
+description: Chart for deploying a VOLTHA stack
+icon: https://guide.opencord.org/logos/voltha.svg
+version: 0.0.1
+appVersion: 2.4

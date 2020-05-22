@@ -1,0 +1,5 @@
+{
+    "enableEapol": "{{ .Values.onos.eapol }}",
+    "enableDhcpOnProvisioning": "{{ .Values.onos.dhcp }}",
+    "enableIgmpOnProvisioning": "{{ .Values.onos.igmp }}"
+}

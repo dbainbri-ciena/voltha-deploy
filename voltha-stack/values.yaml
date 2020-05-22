@@ -1,0 +1,60 @@
+---
+private_kafka_cluster: false
+private_etcd_cluster: false
+env: default
+
+voltha:
+  enabled: true
+  defaults:
+    log_level: "DEBUG"
+    image_tag: master
+    image_pullPolicy: "Always"
+    rw_core:
+      timeout: "8000"
+
+  private_kafka_cluster: false
+  private_etcd_cluster: false
+  services:
+    controller:
+      - service: dev-onos-0.dev-onos-hs.infra.svc.cluster.local
+        port: 6653
+    etcd:
+      service: dev-etcd.infra.svc.cluster.local
+      port: 2379
+    kafka:
+      adapter:
+        service: dev-kafka.infra.svc.cluster.local
+        port: 9092
+      cluster:
+        service: dev-kafka.infra.svc.cluster.local
+        port: 9092
+
+openolt:
+  enabled: true
+  services:
+    etcd:
+      service: dev-etcd.infra.svc.cluster.local
+      port: 2379
+    kafka:
+      adapter:
+        service: dev-kafka.infra.svc.cluster.local
+        port: 9092
+      cluster:
+        service: dev-kafka.infra.svc.cluster.local
+        port: 9092
+
+openonu:
+  enabled: true
+  use_openonu_adapter_go: false
+  services:
+    etcd:
+      service: dev-etcd.infra.svc.cluster.local
+      port: 2379
+    kafka:
+      adapter:
+        service: dev-kafka.infra.svc.cluster.local
+        port: 9092
+      cluster:
+        service: dev-kafka.infra.svc.cluster.local
+        port: 9092
+
