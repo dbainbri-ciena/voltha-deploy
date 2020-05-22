@@ -66,3 +66,31 @@ etcd.replicas: 1
 onos.replicas: 1
 onos.atomix.replicas: 1
 ```
+
+## VOLTHA Stack
+**NOTE:** _Multiple stacks cannot currently be deployed pending patches to core components
+with respect to KV prefix and message topics_
+### **TL;DR**
+You will need to specify the endpoint information for Kafka and ETCd to the VOLTHA core
+and adapters. This can be done via a custom `values.yaml` file. An example of such as
+file is included in this repository as `examples/override.yaml`. This example assumes
+that the infrastructure was installed in the namespace `infra` with the Helm release
+name `dev-infra`.
+
+```
+helm install --name stack1 --namespace stack1 -f examples/override.yaml --atomic --wait deploy/voltha-stack
+```
+
+### Create and Enable BBSIM
+Assumes a BBSIM instance (`bbsim0`) was deployed into the namespace `infra` with the
+Helm release name `dev-infra`. Also assumes a port forward was established and `voltctl`
+is configured to use that port forward.
+```
+voltctl device enable $(voltctl device create -t openolt -H dev-infra-bbsim0.infra.svc.cluster.local:50060)
+```
+
+**TL;DR**
+```
+kubectl port-forward -n stack1 svc/voltha-api 55555:55555
+voltctl -s localhost:55555 version
+```

@@ -8,5 +8,5 @@ dependencies:
 - name: voltha-adapter-openonu
   repository: https://charts.opencord.org
   version: 2.3.6
-digest: sha256:e3150b2375c83fcc7cf63ac1e4aa2fc3d21979b1a452e1d0c612879ee70cced9
-generated: "2020-05-20T15:07:50.703026367-07:00"
+digest: sha256:2640265c835ec8846f0eb08ea6b495b5c01ab7bc7aaa8095c69f855ef951d247
+generated: "2020-05-22T10:32:51.633808209-07:00"
