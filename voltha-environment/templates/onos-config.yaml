@@ -12,7 +12,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-{{ if  or (and (not (hasKey .Values.onos "enabled")) (not (hasKey .Values.tags "infra"))) .Values.onos.enabled (and (not (hasKey .Values.onos "enabled")) .Values.tags.infra) -}}
+{{ $tags := .Values.tags | default dict -}}
+{{ $onos := .Values.onos | default dict -}}
+{{ if  or (and (kindIs "invalid" $onos.enabled) (kindIs "invalid" $tags.infra)) $onos.enabled (and (kindIs "invalid" $onos.enabled) $tags.infra) -}}
 apiVersion: batch/v1
 kind: Job
 metadata:
