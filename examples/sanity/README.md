@@ -17,13 +17,19 @@ nodes:
 ```
 The cluster can be created with
 ```
-kind create cluster --config <file> --name basic-cluster
+kind create cluster --config basic-cluster.yaml --name basic-cluster
 export KUBECONFIG=$(kind get kubeconfig-path --name basic-cluster)
 ```
 
 ### Initialize Helm
+**NOTE:** _`https://dbainbri-ciena.github.io/charts` is used as the `onf` repo because it has
+versions of the ONF charts that are not yet committed._
 ```
 helm init --wait
+helm repo add onosproject http://charts.onosproject.org
+helm repo add ciena-incubator https://dbainbri-ciena.github.io/charts/
+helm repo add onf https://dbainbri-ciena.github.io/charts/
+helm repo add kubernetes-incubator https://kubernetes-charts-incubator.storage.googleapis.com
 kubectl create serviceaccount --namespace kube-system tiller
 kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
 kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
@@ -41,7 +47,7 @@ onos:
 ```
 The infrastructure can be installed with
 ```
-helm install --atomic --wait --namespace infra --name dev-infra --set-file kubeconfig=$KUBECONFIG -f dev-infra.yaml deploy/voltha-environment
+helm install --atomic --wait --namespace infra --name dev-infra --set-file kubeconfig=$KUBECONFIG -f dev-infra.yaml ciena-incubator/voltha-environment
 ```
 
 ## Install a VOLTHA Stack
@@ -97,8 +103,36 @@ openonu:
 ```
 Command:
 ```
-helm install --atomic --wait --namespace stack1 --name dev-stack1 -f dev-stack.yaml deploy/voltha-stack
+helm install --atomic --wait --namespace stack1 --name dev-stack1 -f dev-stack.yaml ciena-incubator/voltha-stack
 ```
 
 ## Done
 At this point everything is up and running. Port forwarding into the k8s cluster is not configured.
+
+## Extra Credit: Create, Enable, Authenticate, and Assign IP
+```
+kubectl port-forward -n stack1 svc/stack1-voltha-api 55555:55555 >/dev/null 2>&1 &
+kubectl port-forward -n infra  svc/dev-infra-onos-hs 8101:8101 >/dev/null 2>&1 &
+voltctl device enable $(voltctl device create -t openolt -H dev-infra-bbsim0.infra.svc:50060)
+```
+
+Repeat the following command until the device is in the `AUTHORIZED_STATE`
+```
+ssh -p 8101 karaf@localhost aaa-users
+```
+
+```
+ssh -p 8101 karaf@localhost volt-add-subscriber-access of:00000a0a0a0a0a00 16
+```
+
+Repeat the following command until DHCPACK is received
+```
+ssh -p 8101 karaf@localhost dhcpl2relay-allocations
+```
+
+## Cleanup
+```
+kill %1 %2
+helm delete --purge dev-infra stack1
+kind delete cluster --name basic-cluster
+```

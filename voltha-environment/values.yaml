@@ -12,6 +12,13 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+services:
+  radius: "{{ .Release.Name }}-radius.{{ .Release.Namespace }}.svc:1812"
+  kafka: "{{ .Release.Name }}-kafka.{{ .Release.Namespace }}.svc:9092"
+  sadis:
+    subscribers: "{{ .Release.Name }}-bbsim-sadis-server.{{ .Release.Namespace }}.svc:58080/subscribers/%s"
+    profiles: "{{ .Release.Name }}-bbsim-sadis-server.{{ .Release.Namespace }}.svc:58080/profiles/%s"
+
 kafka:
   replicas: 1
   configurationOverrides:

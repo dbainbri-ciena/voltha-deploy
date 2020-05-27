@@ -14,21 +14,21 @@
 # limitations under the License.
 dependencies:
   - name: voltha
-    repository: https://charts.opencord.org
-    version: 2.4.6
+    repository: "@onf"
+    version: 2.4.7
     condition: voltha.enabled
     tags:
       - core
   - name: voltha-adapter-openolt
-    repository: https://charts.opencord.org
-    version: 2.4.2
+    repository: "@onf"
+    version: 2.4.3
     alias: openolt
     condition: openolt.enabled
     tags:
       - adapters
   - name: voltha-adapter-openonu
-    repository: https://charts.opencord.org
-    version: 2.3.6
+    repository: "@onf"
+    version: 2.3.7
     alias: openonu
     condition: openonu.enabled
     tags:

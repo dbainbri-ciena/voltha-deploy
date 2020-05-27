@@ -1,5 +1,5 @@
 ---
 onos:
-  replicas: 2
+  replicas: 1
   atomix:
-    replicas: 3
+    replicas: 1

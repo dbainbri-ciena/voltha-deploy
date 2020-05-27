@@ -1,12 +1,12 @@
 dependencies:
 - name: voltha
-  repository: https://charts.opencord.org
-  version: 2.4.6
+  repository: http://127.0.0.1:8879/charts
+  version: 2.4.7
 - name: voltha-adapter-openolt
-  repository: https://charts.opencord.org
-  version: 2.4.2
+  repository: http://127.0.0.1:8879/charts
+  version: 2.4.3
 - name: voltha-adapter-openonu
-  repository: https://charts.opencord.org
-  version: 2.3.6
-digest: sha256:2640265c835ec8846f0eb08ea6b495b5c01ab7bc7aaa8095c69f855ef951d247
-generated: "2020-05-22T10:32:51.633808209-07:00"
+  repository: http://127.0.0.1:8879/charts
+  version: 2.3.7
+digest: sha256:4e01a74081a23219506f24dbd3d6151a8bdfeb6bcd6039a2811569bfc9d3abb7
+generated: "2020-05-26T18:40:50.004317285-07:00"

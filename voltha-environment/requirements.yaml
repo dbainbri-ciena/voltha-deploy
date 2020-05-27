@@ -14,68 +14,68 @@
 # limitations under the License.
 dependencies:
   - name: kafka
-    repository: https://kubernetes-charts-incubator.storage.googleapis.com
+    repository: "@kubernetes-incubator"
     version: 0.15.3
     condition: kafka.enabled
     tags:
       - infra
   - name: etcd
-    repository: http://storage.googleapis.com/kubernetes-charts-incubator
+    repository: "@kubernetes-incubator"
     version: 0.7.4
     condition: etcd.enabled
     tags:
       - infra
   - name: freeradius
-    repository: https://charts.opencord.org
-    version: 1.0.0
+    repository: "@onf"
+    version: 1.0.1
     condition: radius.enabled
     alias: radius
     tags:
       - infra
   - name: onos-classic
-    repository: https://charts.onosproject.org
+    repository: "@onosproject"
     version: 0.1.1
     condition: onos.enabled
     alias: onos
     tags:
       - infra
   - name: bbsim-sadis-server
-    repository: https://ciena.github.io/bbsim-sadis-server/charts
-    version: 1.0.0
+    repository: "@ciena-incubator"
+    version: 1.0.1
     alias: sadis
     condition: sadis.enabled
     tags:
       - infra
   - name: bbsim
-    repository: file:///home/ubuntu/src/helm-charts/bbsim
+    repository: "@onf"
     version: 3.0.25
     condition: bbsim0.enabled
     alias: bbsim0
     tags:
       - bbsim
   - name: bbsim
-    repository: file:///home/ubuntu/src/helm-charts/bbsim
+    repository: "@onf"
     version: 3.0.25
     condition: bbsim1.enabled
     alias: bbsim1
     tags:
       - bbsim
   - name: bbsim
-    repository: file:///home/ubuntu/src/helm-charts/bbsim
+    repository: "@onf"
     version: 3.0.25
     condition: bbsim2.enabled
     alias: bbsim2
     tags:
       - bbsim
   - name: bbsim
-    repository: file:///home/ubuntu/src/helm-charts/bbsim
+    repository: "@onf"
     version: 3.0.25
     condition: bbsim3.enabled
     alias: bbsim3
     tags:
       - bbsim
   - name: bbsim
-    repository: file:///home/ubuntu/src/helm-charts/bbsim
+    repository: "@onf"
     version: 3.0.25
     condition: bbsim4.enabled
     alias: bbsim4

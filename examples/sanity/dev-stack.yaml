@@ -2,45 +2,45 @@
 voltha:
   services:
     controller:
-      - service: dev-infra-onos-0.dev-infra-onos-hs.infra.svc.cluster.local
+      - service: dev-infra-onos-0.dev-infra-onos-hs.infra.svc
         port: 6653
-      - service: dev-infra-onos-1.dev-infra-onos-hs.infra.svc.cluster.local
+      - service: dev-infra-onos-1.dev-infra-onos-hs.infra.svc
         port: 6653
-      - service: dev-infra-onos-2.dev-infra-onos-hs.infra.svc.cluster.local
+      - service: dev-infra-onos-2.dev-infra-onos-hs.infra.svc
         port: 6653
     etcd:
-      service: dev-infra-etcd.infra.svc.cluster.local
+      service: dev-infra-etcd.infra.svc
       port: 2379
     kafka:
       adapter:
-        service: dev-infra-kafka.infra.svc.cluster.local
+        service: dev-infra-kafka.infra.svc
         port: 9092
       cluster:
-        service: dev-infra-kafka.infra.svc.cluster.local
+        service: dev-infra-kafka.infra.svc
         port: 9092
 
 openolt:
   services:
     etcd:
-      service: dev-infra-etcd.infra.svc.cluster.local
+      service: dev-infra-etcd.infra.svc
       port: 2379
     kafka:
       adapter:
-        service: dev-infra-kafka.infra.svc.cluster.local
+        service: dev-infra-kafka.infra.svc
         port: 9092
       cluster:
-        service: dev-infra-kafka.infra.svc.cluster.local
+        service: dev-infra-kafka.infra.svc
         port: 9092
 
 openonu:
   services:
     etcd:
-      service: dev-infra-etcd.infra.svc.cluster.local
+      service: dev-infra-etcd.infra.svc
       port: 2379
     kafka:
       adapter:
-        service: dev-infra-kafka.infra.svc.cluster.local
+        service: dev-infra-kafka.infra.svc
         port: 9092
       cluster:
-        service: dev-infra-kafka.infra.svc.cluster.local
+        service: dev-infra-kafka.infra.svc
         port: 9092

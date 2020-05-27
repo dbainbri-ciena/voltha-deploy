@@ -1,10 +1,11 @@
+{{- $radius := splitn ":" 2 (tpl .Values.services.radius .) -}}
 {
     "apps": {
         "org.opencord.aaa": {
             "AAA": {
                 "radiusConnectionType" : "socket",
-                "radiusHost": "radius",
-                "radiusServerPort": "1812",
+                "radiusHost": "{{ $radius._0 }}",
+                "radiusServerPort": "{{ $radius._1 }}",
                 "radiusSecret": "SECRET"
               }
         },
@@ -15,13 +16,13 @@
         },
         "org.opencord.kafka": {
             "kafka": {
-                "bootstrapServers": "{{ .Release.Name }}-kafka:9092"
+                "bootstrapServers": "{{ tpl .Values.services.kafka . }}"
             }
         },
         "org.opencord.sadis": {
             "sadis": {
                 "integration": {
-                    "url": "http://bbsim-sadis-server:58080/subscribers/%s",
+                    "url": "http://{{ tpl .Values.services.sadis.subscribers . }}",
                     "cache": {
                         "enabled": true,
                         "maxsize": 50,
@@ -31,7 +32,7 @@
             },
             "bandwidthprofile": {
                 "integration": {
-                    "url": "http://bbsim-sadis-server:58080/profiles/%s",
+                    "url": "http://{{ tpl .Values.services.sadis.profiles . }}",
                     "cache": {
                         "enabled": true,
                         "maxsize": 50,

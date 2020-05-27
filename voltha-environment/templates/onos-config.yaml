@@ -36,7 +36,7 @@ spec:
       containers:
       - name: netcfg
         image: curlimages/curl:7.70.0
-        command: ['ash', '-c', 'while true; do if curl -XPOST -u karaf:karaf --fail -sSL -H Content-Type:application/json http://{{ .Release.Name }}-onos-hs.{{ .Release.Namespace }}.svc:8181/onos/v1/network/configuration -d {{ tpl ( .Files.Get "files/onos-netcfg.json" | nospace ) . | quote }}]; then exit 0; fi; sleep 5; done']
+        command: ['ash', '-c', 'while true; do if curl -XPOST -u karaf:karaf --fail -sSL -H Content-Type:application/json http://{{ .Release.Name }}-onos-hs.{{ .Release.Namespace }}.svc:8181/onos/v1/network/configuration -d {{ tpl ( .Files.Get "files/onos-netcfg.json" ) . | nospace |  quote }}]; then exit 0; fi; sleep 5; done']
       - name: config
         image: curlimages/curl:7.70.0
         command: ['ash', '-c', 'while true; do if curl -XPOST -u karaf:karaf --fail -sSL -H Content-Type:application/json http://{{ .Release.Name }}-onos-hs.{{ .Release.Namespace }}.svc:8181/onos/v1/configuration/org.opencord.olt.impl.OltFlowService -d {{ tpl ( .Files.Get "files/onos-config.json" | nospace ) . | quote }}]; then exit 0; fi; sleep 5; done']
