@@ -13,18 +13,18 @@ helm repo update
 ### **TL;DR**
 Install VOLTHA environment in the Kubernetes namespace `infra`
 ```
-helm install --atomic --wait --namespace infra --name dev --set-file kubeconfig=$KUBECONFIG deploy/voltha-environment
+helm install --atomic --wait --namespace infra --name dev --set-file sadis.kubeconfig=$KUBECONFIG deploy/voltha-environment
 ```
 
 Install VOLTHA environment infra in different namespace from bbsim simulators
 ```
-helm install --set tags.bbsim=false --atomic --wait --namespace infra --name dev-infra --set-file kubeconfig=$KUBECONFIG deploy/voltha-environment
-helm install --set tags.infra=false --atomic --wait --namespace bbsim --name dev-bbsim --set-file kubeconfig=$KUBECONFIG deploy/voltha-environment
+helm install --set tags.bbsim=false --atomic --wait --namespace infra --name dev-infra --set-file sadis.kubeconfig=$KUBECONFIG deploy/voltha-environment
+helm install --set tags.infra=false --atomic --wait --namespace bbsim --name dev-bbsim --set-file sadis.kubeconfig=$KUBECONFIG deploy/voltha-environment
 ```
 
 Add BBSIM instance to deploy environment
 ```
-helm upgrade --set bbsim1.enabled=true --set tags.infra=false --atomic --wait --namespace bbsim --set-file kubeconfig=$KUBECONFIG dev-bbsim deploy/voltha-environment
+helm upgrade --set bbsim1.enabled=true --set tags.infra=false --atomic --wait --namespace bbsim --set-file sadis.kubeconfig=$KUBECONFIG dev-bbsim deploy/voltha-environment
 ```
 
 Removing

@@ -17,7 +17,7 @@ nodes:
 ```
 The cluster can be created with
 ```
-kind create cluster --config basic-cluster.yaml --name basic-cluster
+kind create cluster --config examples/sanity/basic-cluster.yaml --name basic-cluster
 export KUBECONFIG=$(kind get kubeconfig-path --name basic-cluster)
 ```
 
@@ -30,6 +30,7 @@ helm repo add onosproject http://charts.onosproject.org
 helm repo add ciena-incubator https://dbainbri-ciena.github.io/charts/
 helm repo add onf https://dbainbri-ciena.github.io/charts/
 helm repo add kubernetes-incubator https://kubernetes-charts-incubator.storage.googleapis.com
+helm repo update
 kubectl create serviceaccount --namespace kube-system tiller
 kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
 kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
@@ -47,7 +48,7 @@ onos:
 ```
 The infrastructure can be installed with
 ```
-helm install --atomic --wait --namespace infra --name dev-infra --set-file kubeconfig=$KUBECONFIG -f dev-infra.yaml ciena-incubator/voltha-environment
+helm install --atomic --wait --namespace infra --name dev-infra --set-file sadis.kubeconfig=$KUBECONFIG -f examples/sanity/dev-infra.yaml ciena-incubator/voltha-environment
 ```
 
 ## Install a VOLTHA Stack
@@ -103,7 +104,7 @@ openonu:
 ```
 Command:
 ```
-helm install --atomic --wait --namespace stack1 --name dev-stack1 -f dev-stack.yaml ciena-incubator/voltha-stack
+helm install --atomic --wait --namespace stack1 --name stack1 -f examples/sanity/dev-stack.yaml ciena-incubator/voltha-stack
 ```
 
 ## Done
